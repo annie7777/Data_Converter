@@ -6,16 +6,17 @@ import os
 root_dir = 'yolo'
 txtfiles = ['train.txt', 'test.txt']
 
-bnd_id_start = 1
-times = 0
-json_dict = {
-	"images"     : [],
-	"type"       : "instances",
-	"annotations": [],
-	"categories" : []
-}
 
 for txtfile in txtfiles:
+
+	bnd_id_start = 1
+	times = 0
+	json_dict = {
+		"images"     : [],
+		"type"       : "instances",
+		"annotations": [],
+		"categories" : []
+	}
 
 	with open(os.path.join(root_dir,txtfile),'r') as f:
 		data = f.read().splitlines()
@@ -65,7 +66,7 @@ for txtfile in txtfiles:
 				'iscrowd'       : 0,
 				'image_id'      : image_id, 
 				'bbox'          :[xmin, ymin, o_width,o_height],
-				'category_id'   : int(category_id), 
+				'category_id'   : int(category_id)+1, 
 				'id'            : bnd_id, 
 				'ignore'        : 0,
 				'segmentation'  : []
@@ -82,7 +83,7 @@ for txtfile in txtfiles:
 	for i in range(len(classes)):
 
 		cate = classes[i]
-		cid = i
+		cid = i+1
 		category = {
 			'supercategory' : 'phenology',
 			'id'            : cid, 
