@@ -1,10 +1,10 @@
 import sys
-darknet_dir = '/home/srv2019/Documents/GA/darknet'
+# darknet_dir = '/home/srv2019/Documents/GA/darknet'
 # color_dir = '/home/srv2019/Documents/phenology_distribution'
-sys.path.append(darknet_dir)
+# sys.path.append(darknet_dir)
 # sys.path.append(color_dir)
 # from draw_distribution import colors
-from darknet import performDetect
+# from darknet import performDetect
 import os, glob
 import cv2
 import numpy as np
@@ -14,17 +14,26 @@ from matplotlib import pyplot as plt
 
 showImage_flag = False
 
+
+########################YOLO configuration##########################################
+darknet_dir = '/home/srv2019/Documents/GA/darknet'
+sys.path.append(darknet_dir)
+from darknet import performDetect
 configPath = "/home/srv2019/Documents/GA/darknet/phenology/yolov4.cfg"
 weightPath = "/home/srv2019/Documents/GA/darknet/phenology/backup/yolov4_600.weights"
 metaPath = "/home/srv2019/Documents/GA/darknet/phenology/green.data"
 classnames = '/home/srv2019/Documents/GA/darknet/phenology/classes.names'
+####################################################################################
 
 with open(classnames) as f:
     classes = f.read().splitlines()
 classes = np.array(classes) 
 result_dir = 'yolov4_results'
+
+#########################Quad configuration########################################
 quad_root = '../phenology_distribution/all_quads'
 quad_dirs = ['627_16B_GPS', '642_16A_GPS']
+###################################################################################
 
 def detections2xml(detections, xmlfile, image, minr,minc,maxr,maxc):
 
