@@ -20,3 +20,6 @@ folder structure
     └── ...
     
  
+## 2. [yolo2labelimg](yolo2labelimg.py)
+
+update yolo configuration block and quad configuration block
